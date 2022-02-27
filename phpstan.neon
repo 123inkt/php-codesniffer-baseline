@@ -1,5 +1,13 @@
 parameters:
   level: max
   treatPhpDocTypesAsCertain: false
+  bootstrapFiles:
+    - %currentWorkingDirectory%/tests/bootstrap.php
+
+  # src/Reports/Baseline uses Report interface but that docblock is incorrect in squizlabs
+  excludePaths:
+    - src/Reports
+
   paths:
     - src
+    - tests

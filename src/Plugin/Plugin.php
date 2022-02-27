@@ -102,7 +102,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     }
 
     /**
-     * @return array<string, mixed>
+     * @inheritDoc
      */
     public static function getSubscribedEvents(): array
     {

@@ -1,0 +1,37 @@
+{
+    "name": "digitalrevolution/skeleton",
+    "description": "Digital Revolution skeleton package",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    },
+    "require": {
+        "php": ">=8.0"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "squizlabs/php_codesniffer": "^3.6",
+        "phpmd/phpmd": "@stable",
+        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^1.4",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpstan/phpstan-strict-rules": "^1.1",
+        "phpstan/extension-installer": "^1.1"
+    },
+    "scripts": {
+        "check": ["@check:phpstan", "@check:phpmd", "@check:phpcs"],
+        "check:phpstan": "phpstan analyse",
+        "check:phpmd": "phpmd src,tests text phpmd.xml.dist --suffixes=php",
+        "check:phpcs": "phpcs src tests",
+        "fix": "@fix:phpcbf",
+        "fix:phpcbf": "phpcbf src tests",
+        "test": "phpunit",
+        "test:integration": "phpunit --testsuite integration",
+        "test:unit": "phpunit --testsuite unit"
+    }
+}

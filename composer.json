@@ -19,7 +19,7 @@
     "require-dev": {
         "composer/composer": "^2.0",
         "micheh/phpcs-gitlab": "^1.1",
-        "mikey179/vfsstream": ">=1.6",
+        "mikey179/vfsstream": "1.6.10",
         "phpmd/phpmd": "@stable",
         "phpstan/phpstan": "^1.4",
         "phpstan/phpstan-phpunit": "^1.0",

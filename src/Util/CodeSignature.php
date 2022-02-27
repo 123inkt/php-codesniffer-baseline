@@ -8,7 +8,7 @@ class CodeSignature
     /**
      * Generate the sha1 code signature for the tokens around the given line.
      *
-     * @param array<int|string, array> $tokens All tokens of a given file.
+     * @param array<int|string, array{line: int, content?: string}> $tokens All tokens of a given file.
      */
     public static function createSignature(array $tokens, int $lineNr): string
     {

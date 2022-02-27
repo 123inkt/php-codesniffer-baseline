@@ -122,6 +122,5 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         $instance         = new self();
         $instance->stream = $event->getIO();
         $instance->onPostInstall();
-        // @codeCoverageIgnoreStart
     }
-}// @codeCoverageIgnoreEnd
+}

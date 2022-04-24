@@ -9,6 +9,8 @@ use DR\CodeSnifferBaseline\Util\CodeSignature;
 use DR\CodeSnifferBaseline\Util\DirectoryUtil;
 use PHP_CodeSniffer\Config;
 
+use function stripos;
+
 class BaselineHandler
 {
     private ?BaselineSet $baseline;
@@ -29,7 +31,7 @@ class BaselineHandler
         if (self::$instance === null) {
             $baseline = null;
             // only read baseline if phpcs is not writing one.
-            if ($config->reportFile === null || str_contains($config->reportFile, 'phpcs.baseline.xml') === false) {
+            if ($config->reportFile === null || stripos($config->reportFile, 'phpcs.baseline.xml') === false) {
                 $baseline = BaselineSetFactory::fromFile(DirectoryUtil::getProjectRoot() . 'phpcs.baseline.xml');
             }
 

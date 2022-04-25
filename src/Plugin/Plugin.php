@@ -75,14 +75,14 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         // @codeCoverageIgnoreEnd
         $this->stream->info('php-codesniffer-baseline: read: ' . $this->codeSnifferFilePath);
 
-        if (str_contains($source, BaselineHandler::class)) {
+        if (strpos($source, BaselineHandler::class) !== false) {
             $this->stream->info('php-codesniffer-baseline: ignored. src/Files/File.php is already modified');
 
             return;
         }
 
         $search = '$messageCount++;';
-        if (str_contains($source, $search) === false) {
+        if (strpos($source, $search) === false) {
             $this->stream->error('php-codesniffer-baseline: unable to find `' . $search . '` in `squizlabs/php_codesniffer/src/Files/File.php`');
 
             return;

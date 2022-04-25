@@ -29,7 +29,7 @@ class BaselineHandler
         if (self::$instance === null) {
             $baseline = null;
             // only read baseline if phpcs is not writing one.
-            if ($config->reportFile === null || str_contains($config->reportFile, 'phpcs.baseline.xml') === false) {
+            if ($config->reportFile === null || strpos($config->reportFile, 'phpcs.baseline.xml') === false) {
                 $baseline = BaselineSetFactory::fromFile(DirectoryUtil::getProjectRoot() . 'phpcs.baseline.xml');
             }
 

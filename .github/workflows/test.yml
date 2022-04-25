@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['8.0', '8.1']
+        php-versions: ['7.4', '8.0', '8.1']
         composer-flags: ['', '--prefer-lowest']
     steps:
       - uses: actions/checkout@v2
@@ -30,12 +30,16 @@ jobs:
   quality:
     name: Quality checks
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: [ '7.4', '8.0', '8.1' ]
+        composer-flags: [ '', '--prefer-lowest' ]
     steps:
       - uses: actions/checkout@v2
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.0
+          php-version: ${{ matrix.php-versions }}
           coverage: none
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest

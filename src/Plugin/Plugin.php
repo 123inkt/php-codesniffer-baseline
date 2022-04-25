@@ -12,8 +12,6 @@ use Composer\Script\ScriptEvents;
 use DR\CodeSnifferBaseline\Util\DirectoryUtil;
 use Exception;
 
-use function stripos;
-
 class Plugin implements PluginInterface, EventSubscriberInterface
 {
     private ?IOInterface $stream = null;
@@ -77,14 +75,14 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         // @codeCoverageIgnoreEnd
         $this->stream->info('php-codesniffer-baseline: read: ' . $this->codeSnifferFilePath);
 
-        if (stripos($source, BaselineHandler::class) !== false) {
+        if (str_contains($source, BaselineHandler::class)) {
             $this->stream->info('php-codesniffer-baseline: ignored. src/Files/File.php is already modified');
 
             return;
         }
 
         $search = '$messageCount++;';
-        if (stripos($source, $search) === false) {
+        if (str_contains($source, $search) === false) {
             $this->stream->error('php-codesniffer-baseline: unable to find `' . $search . '` in `squizlabs/php_codesniffer/src/Files/File.php`');
 
             return;

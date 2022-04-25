@@ -14,8 +14,7 @@
     "require": {
         "php": ">=7.4",
         "composer-plugin-api": "^1.0 || ^2.0",
-        "squizlabs/php_codesniffer": "^3.6",
-        "symfony/polyfill-php80": "^1.15"
+        "squizlabs/php_codesniffer": "^3.6"
     },
     "require-dev": {
         "composer/composer": "^2.0",

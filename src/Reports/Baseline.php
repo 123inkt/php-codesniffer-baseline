@@ -39,7 +39,7 @@ class Baseline implements Report
             foreach ($lineErrors as $colErrors) {
                 foreach ($colErrors as $error) {
                     $out->startElement('violation');
-                    $out->writeAttribute('file', $report['filename']);
+                    $out->writeAttribute('file', str_replace('\\', '/', $report['filename']));
                     $out->writeAttribute('sniff', $error['source']);
                     $out->writeAttribute('signature', $signature);
 

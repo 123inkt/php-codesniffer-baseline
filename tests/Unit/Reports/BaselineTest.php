@@ -38,7 +38,7 @@ class BaselineTest extends TestCase
     public function testGenerateFileReportShouldPrintReport(): void
     {
         $reportData = [
-            'filename' => '/test/foobar.txt',
+            'filename' => '/test\\foobar.txt',
             'errors'   => 1,
             'warnings' => 0,
             'messages' => [5 => [[['source' => 'MySniff']]]],

@@ -11,7 +11,7 @@ baseline your projects current issues.
 ## Getting Started
 
 ```bash
-composer require digitalrevolution/php-codesniffer-baseline
+composer require --dev digitalrevolution/php-codesniffer-baseline
 ```
 
 ## Create baseline

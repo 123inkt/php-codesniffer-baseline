@@ -8,15 +8,6 @@
         The Code Size Ruleset contains a collection of rules that find code size related problems.
     </description>
 
-    <rule ref="rulesets/codesize.xml">
-        <exclude name="TooManyPublicMethods"/>
-    </rule>
-    <rule ref="rulesets/codesize.xml/TooManyPublicMethods">
-        <properties>
-            <property name="ignorepattern" value="(^(set|get|test))i"/>
-        </properties>
-    </rule>
-
     <rule ref="rulesets/controversial.xml"/>
     <rule ref="rulesets/design.xml">
         <exclude name="CouplingBetweenObjects" />
@@ -27,12 +18,40 @@
         </properties>
     </rule>
     <rule ref="rulesets/unusedcode.xml"/>
+
+    <!-- Naming rules -->
     <rule ref="rulesets/naming.xml">
+        <exclude name="ShortVariable"/>
         <exclude name="LongVariable"/>
+        <exclude name="LongClassName"/>
+    </rule>
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="exceptions" value="id,e,i,x,y,z" />
+        </properties>
     </rule>
     <rule ref="rulesets/naming.xml/LongVariable">
         <properties>
             <property name="maximum" value="25"/>
+            <property name="subtract-suffixes"
+                      value="Repository,Controller,Service,Hydrator,Provider,Factory,Builder,Manager,Handler,View,ViewModel,Repositories,Controllers,Services,Hydrators,Providers,Factories,Builders,Managers,Handlers,Views,ViewModels"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/codesize.xml">
+        <exclude name="TooManyMethods"/>
+        <exclude name="TooManyPublicMethods"/>
+    </rule>
+    <!-- exclude `function test*` from count -->
+    <rule ref="rulesets/codesize.xml/TooManyMethods">
+        <properties>
+            <property name="ignorepattern" value="(^(set|get|test))"/>
+        </properties>
+    </rule>
+    <!-- exclude `function test*` from count -->
+    <rule ref="rulesets/codesize.xml/TooManyPublicMethods">
+        <properties>
+            <property name="ignorepattern" value="(^(set|get|test))"/>
         </properties>
     </rule>
 </ruleset>

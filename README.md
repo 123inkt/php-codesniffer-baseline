@@ -18,7 +18,7 @@ composer require --dev digitalrevolution/php-codesniffer-baseline
 Create the baseline by using phpcs regularly and writing the report with the Baseline report class. You must write the baseline
 to the root of the project and name it `phpcs.baseline.xml`.
 ```bash
-php vendor/bin/phpcs src tests --report=\\DR\\CodeSnifferBaseline\\Reports\\Baseline --report-file=phpcs.baseline.xml --basepath=/path/to/project/root
+php vendor/bin/phpcs src tests --report=\\DR\\CodeSnifferBaseline\\Reports\\Baseline --report-file=phpcs.baseline.xml --basepath=.
 ```
 
 ## Usage

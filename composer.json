@@ -9,7 +9,8 @@
         "process-timeout": 0,
         "allow-plugins": {
             "phpstan/extension-installer": true
-        }
+        },
+        "lock": false
     },
     "require": {
         "php": ">=7.4",
@@ -18,9 +19,8 @@
     },
     "require-dev": {
         "composer/composer": "^2.0",
-        "micheh/phpcs-gitlab": "^1.1",
         "mikey179/vfsstream": "1.6.11",
-        "phpmd/phpmd": "@stable",
+        "phpmd/phpmd": "^2.15",
         "phpstan/phpstan": "^1.4",
         "phpstan/phpstan-phpunit": "^1.0",
         "phpstan/phpstan-strict-rules": "^1.1",

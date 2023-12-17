@@ -53,3 +53,12 @@
 *.ttf     -text diff
 *.woff    -text diff
 *.woff2   -text diff
+
+# Exclude directories/files from composer vendor package
+/tests export-ignore
+/.* export-ignore
+/php*.json export-ignore
+/php*.xml export-ignore
+/php*.neon export-ignore
+/php*.dist export-ignore
+/renovate.json export-ignore

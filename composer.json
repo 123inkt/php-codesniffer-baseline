@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "composer/composer": "^2.0",
-        "mikey179/vfsstream": "1.6.11",
+        "mikey179/vfsstream": "1.6.12",
         "phpmd/phpmd": "^2.15",
         "phpstan/phpstan": "^1.4",
         "phpstan/phpstan-phpunit": "^1.0",

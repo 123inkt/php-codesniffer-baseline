@@ -21,9 +21,9 @@
         "composer/composer": "^2.0",
         "mikey179/vfsstream": "1.6.12",
         "phpmd/phpmd": "^2.15",
-        "phpstan/phpstan": "^1.4",
-        "phpstan/phpstan-phpunit": "^1.0",
-        "phpstan/phpstan-strict-rules": "^1.1",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
         "phpstan/extension-installer": "^1.1",
         "phpunit/phpunit": "^9.5",
         "roave/security-advisories": "dev-latest"

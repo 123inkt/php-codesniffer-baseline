@@ -51,7 +51,8 @@ class PluginTest extends TestCase
     {
         $matcher = static::exactly(2);
         $this->stream->expects($matcher)
-            ->method('info')->willReturnCallback(function (...$parameters) use ($matcher) {
+            ->method('info')
+            ->willReturnCallback(function (...$parameters) use ($matcher) {
                 static::assertIsString($parameters[0]);
                 if ($matcher->numberOfInvocations() === 1) {
                     static::assertStringContainsString('read', $parameters[0]);
@@ -94,7 +95,8 @@ class PluginTest extends TestCase
     {
         $matcher = static::exactly(2);
         $this->stream->expects($matcher)
-            ->method('info')->willReturnCallback(function (...$parameters) use ($matcher) {
+            ->method('info')
+            ->willReturnCallback(function (...$parameters) use ($matcher) {
                 static::assertIsString($parameters[0]);
                 if ($matcher->numberOfInvocations() === 1) {
                     static::assertStringContainsString('read', $parameters[0]);

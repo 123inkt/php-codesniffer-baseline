@@ -3,18 +3,15 @@ declare(strict_types=1);
 
 namespace DR\CodeSnifferBaseline\Tests\Unit\Util;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use DR\CodeSnifferBaseline\Util\CodeSignature;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @coversDefaultClass \DR\CodeSnifferBaseline\Util\CodeSignature
- */
+#[CoversClass(CodeSignature::class)]
 class CodeSignatureTest extends TestCase
 {
-    /**
-     * @covers       ::createSignature
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testCreateSignature(int $lineNr, string $expected): void
     {
         $tokens = [
@@ -51,7 +48,7 @@ class CodeSignatureTest extends TestCase
     /**
      * @return array<string, array<int|string>>
      */
-    public function dataProvider(): array
+    public static function dataProvider(): array
     {
         return [
             'first line of file'  => [

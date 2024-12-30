@@ -3,21 +3,17 @@ declare(strict_types=1);
 
 namespace DR\CodeSnifferBaseline\Tests\Unit\Baseline;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use DR\CodeSnifferBaseline\Baseline\BaselineSet;
 use DR\CodeSnifferBaseline\Baseline\ViolationBaseline;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test the logic of the baseline set
- * @coversDefaultClass \DR\CodeSnifferBaseline\Baseline\BaselineSet
  */
+#[CoversClass(BaselineSet::class)]
 class BaselineSetTest extends TestCase
 {
-    /**
-     * @covers ::addEntry
-     * @covers ::contains
-     *
-     */
     public function testSetContainsEntry(): void
     {
         $set = new BaselineSet();
@@ -26,10 +22,6 @@ class BaselineSetTest extends TestCase
         static::assertTrue($set->contains('sniff', 'foobar', 'signature'));
     }
 
-    /**
-     * @covers ::addEntry
-     * @covers ::contains
-     */
     public function testShouldFindEntryForIdenticalRules(): void
     {
         $set = new BaselineSet();
@@ -42,10 +34,6 @@ class BaselineSetTest extends TestCase
         static::assertFalse($set->contains('sniff', 'foo', 'signB'));
     }
 
-    /**
-     * @covers ::addEntry
-     * @covers ::contains
-     */
     public function testShouldNotFindEntryForNonExistingRule(): void
     {
         $set = new BaselineSet();

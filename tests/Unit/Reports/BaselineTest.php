@@ -7,34 +7,26 @@ use DR\CodeSnifferBaseline\Reports\Baseline;
 use DR\CodeSnifferBaseline\Util\CodeSignature;
 use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Files\File;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @coversDefaultClass \DR\CodeSnifferBaseline\Reports\Baseline
- */
+#[CoversClass(Baseline::class)]
 class BaselineTest extends TestCase
 {
-    /** @var File|MockObject */
-    private File $file;
+    private File&MockObject $file;
 
     protected function setUp(): void
     {
         $this->file = $this->createMock(File::class);
     }
 
-    /**
-     * @covers ::generateFileReport
-     */
     public function testGenerateFileReportEmptyShouldReturnFalse(): void
     {
         $report = new Baseline();
         static::assertFalse($report->generateFileReport(['errors' => 0, 'warnings' => 0, 'filename' => 'foo', 'messages' => []], $this->file));
     }
 
-    /**
-     * @covers ::generateFileReport
-     */
     public function testGenerateFileReportShouldPrintReport(): void
     {
         $reportData = [
@@ -60,9 +52,6 @@ class BaselineTest extends TestCase
         static::assertSame('<violation file="/test/foobar.txt" sniff="MySniff" signature="' . $signature . '"/>' . PHP_EOL, $result);
     }
 
-    /**
-     * @covers ::generate
-     */
     public function testGenerate(): void
     {
         $expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" . PHP_EOL;

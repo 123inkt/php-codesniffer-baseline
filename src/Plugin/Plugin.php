@@ -15,7 +15,7 @@ use Exception;
 class Plugin implements PluginInterface, EventSubscriberInterface
 {
     private ?IOInterface $stream = null;
-    private string       $codeSnifferFilePath;
+    private string $codeSnifferFilePath;
 
     public function __construct(?string $codeSnifferFilePath = null)
     {
@@ -48,9 +48,6 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         // not necessary
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ErrorControlOperator) - handled by the === false check
-     */
     public function onPostInstall(): void
     {
         if ($this->stream === null) {

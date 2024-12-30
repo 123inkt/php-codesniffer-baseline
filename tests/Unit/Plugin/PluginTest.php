@@ -52,11 +52,12 @@ class PluginTest extends TestCase
         $matcher = static::exactly(2);
         $this->stream->expects($matcher)
             ->method('info')->willReturnCallback(function (...$parameters) use ($matcher) {
+                static::assertIsString($parameters[0]);
                 if ($matcher->numberOfInvocations() === 1) {
-                    $this->assertSame(static::stringContains('read'), $parameters[0]);
+                    static::assertStringContainsString('read', $parameters[0]);
                 }
                 if ($matcher->numberOfInvocations() === 2) {
-                    $this->assertSame(static::stringContains('is already modified'), $parameters[0]);
+                    static::assertStringContainsString('is already modified', $parameters[0]);
                 }
             });
 
@@ -75,8 +76,9 @@ class PluginTest extends TestCase
         $this->stream->expects($matcher)
             ->method('error')
             ->willReturnCallback(function (...$parameters) use ($matcher) {
+                static::assertIsString($parameters[0]);
                 if ($matcher->numberOfInvocations() === 1) {
-                    $this->assertSame(static::stringContains('unable to find `$messageCount++;`'), $parameters[0]);
+                    static::assertStringContainsString('unable to find `$messageCount++;`', $parameters[0]);
                 }
             });
 
@@ -93,11 +95,12 @@ class PluginTest extends TestCase
         $matcher = static::exactly(2);
         $this->stream->expects($matcher)
             ->method('info')->willReturnCallback(function (...$parameters) use ($matcher) {
+                static::assertIsString($parameters[0]);
                 if ($matcher->numberOfInvocations() === 1) {
-                    $this->assertSame(static::stringContains('read'), $parameters[0]);
+                    static::assertStringContainsString('read', $parameters[0]);
                 }
                 if ($matcher->numberOfInvocations() === 2) {
-                    $this->assertSame(static::stringContains('saved to:'), $parameters[0]);
+                    static::assertStringContainsString('saved to:', $parameters[0]);
                 }
             });
 

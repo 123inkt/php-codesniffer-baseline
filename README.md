@@ -1,4 +1,4 @@
-[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BA)](https://php.net/)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.1-8892BA)](https://php.net/)
 ![Run tests](https://github.com/123inkt/php-codesniffer-baseline/workflows/Run%20checks/badge.svg)
 
 # PHP_Codesniffer baseline

@@ -10,7 +10,6 @@ class BaselineSetFactory
     /**
      * Read the baseline violations from the given filename path.
      * @throws RuntimeException
-     * @SuppressWarnings(PHPMD.ErrorControlOperator) - handled by the RuntimeException
      */
     public static function fromFile(string $fileName): ?BaselineSet
     {

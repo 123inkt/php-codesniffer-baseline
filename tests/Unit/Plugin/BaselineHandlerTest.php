@@ -3,28 +3,20 @@ declare(strict_types=1);
 
 namespace DR\CodeSnifferBaseline\Tests\Unit\Plugin;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use DR\CodeSnifferBaseline\Baseline\BaselineSet;
 use DR\CodeSnifferBaseline\Plugin\BaselineHandler;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @coversDefaultClass \DR\CodeSnifferBaseline\Plugin\BaselineHandler
- * @covers ::__construct
- */
+#[CoversClass(BaselineHandler::class)]
 class BaselineHandlerTest extends TestCase
 {
-    /**
-     * @covers ::isSuppressed
-     */
     public function testIsSuppressedNoBaselineShouldBeFalse(): void
     {
         $handler = new BaselineHandler(null);
         static::assertFalse($handler->isSuppressed([], 1, 'foobar', '/path/'));
     }
 
-    /**
-     * @covers ::isSuppressed
-     */
     public function testIsSuppressedWithBaseline(): void
     {
         $baseline = $this->createMock(BaselineSet::class);

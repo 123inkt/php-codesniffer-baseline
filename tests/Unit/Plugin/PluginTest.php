@@ -11,20 +11,16 @@ use DR\CodeSnifferBaseline\Plugin\BaselineHandler;
 use DR\CodeSnifferBaseline\Plugin\Plugin;
 use Exception;
 use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-/**
- * @coversDefaultClass \DR\CodeSnifferBaseline\Plugin\Plugin
- * @covers ::__construct
- */
+#[CoversClass(Plugin::class)]
 class PluginTest extends TestCase
 {
-    /** @var Composer|MockObject */
-    private Composer $composer;
-    /** @var IOInterface|MockObject */
-    private IOInterface $stream;
+    private Composer&MockObject $composer;
+    private IOInterface&MockObject $stream;
 
     protected function setUp(): void
     {
@@ -32,9 +28,6 @@ class PluginTest extends TestCase
         $this->stream   = $this->createMock(IOInterface::class);
     }
 
-    /**
-     * @covers ::getSubscribedEvents
-     */
     public function testGetSubscribedEvents(): void
     {
         $expected = [
@@ -45,10 +38,6 @@ class PluginTest extends TestCase
         static::assertSame($expected, Plugin::getSubscribedEvents());
     }
 
-    /**
-     * @covers ::activate
-     * @covers ::onPostInstall
-     */
     public function testOnPostInstallWithoutExistingFile(): void
     {
         $this->stream->expects(static::once())->method('error')->with(static::stringContains('failed to find'));
@@ -58,15 +47,20 @@ class PluginTest extends TestCase
         $plugin->onPostInstall();
     }
 
-    /**
-     * @covers ::activate
-     * @covers ::onPostInstall
-     */
     public function testOnPostInstallAlreadyContainsInjection(): void
     {
-        $this->stream->expects(static::exactly(2))
+        $matcher = static::exactly(2);
+        $this->stream->expects($matcher)
             ->method('info')
-            ->withConsecutive([static::stringContains('read')], [static::stringContains('is already modified')]);
+            ->willReturnCallback(function (...$parameters) use ($matcher) {
+                static::assertIsString($parameters[0]);
+                if ($matcher->numberOfInvocations() === 1) {
+                    static::assertStringContainsString('read', $parameters[0]);
+                }
+                if ($matcher->numberOfInvocations() === 2) {
+                    static::assertStringContainsString('is already modified', $parameters[0]);
+                }
+            });
 
         $file = vfsStream::setup()->url() . '/File.php';
         file_put_contents($file, 'foobar \\' . BaselineHandler::class . 'foobar');
@@ -77,15 +71,17 @@ class PluginTest extends TestCase
         $plugin->onPostInstall();
     }
 
-    /**
-     * @covers ::activate
-     * @covers ::onPostInstall
-     */
     public function testOnPostInstallShouldErrorWhenMessageCountCantBeFound(): void
     {
-        $this->stream->expects(static::once())
+        $matcher = static::once();
+        $this->stream->expects($matcher)
             ->method('error')
-            ->withConsecutive([static::stringContains('unable to find `$messageCount++;`')]);
+            ->willReturnCallback(function (...$parameters) use ($matcher) {
+                static::assertIsString($parameters[0]);
+                if ($matcher->numberOfInvocations() === 1) {
+                    static::assertStringContainsString('unable to find `$messageCount++;`', $parameters[0]);
+                }
+            });
 
         $file = vfsStream::setup()->url() . '/File.php';
         file_put_contents($file, 'foobar ');
@@ -95,15 +91,20 @@ class PluginTest extends TestCase
         $plugin->onPostInstall();
     }
 
-    /**
-     * @covers ::activate
-     * @covers ::onPostInstall
-     */
     public function testOnPostInstallShouldInjectCode(): void
     {
-        $this->stream->expects(static::exactly(2))
+        $matcher = static::exactly(2);
+        $this->stream->expects($matcher)
             ->method('info')
-            ->withConsecutive([static::stringContains('read')], [static::stringContains('saved to:')]);
+            ->willReturnCallback(function (...$parameters) use ($matcher) {
+                static::assertIsString($parameters[0]);
+                if ($matcher->numberOfInvocations() === 1) {
+                    static::assertStringContainsString('read', $parameters[0]);
+                }
+                if ($matcher->numberOfInvocations() === 2) {
+                    static::assertStringContainsString('saved to:', $parameters[0]);
+                }
+            });
 
         $file = vfsStream::setup()->url() . '/File.php';
         file_put_contents($file, 'foobar $messageCount++; foobar');
@@ -116,7 +117,6 @@ class PluginTest extends TestCase
     }
 
     /**
-     * @covers ::run
      * @throws Exception
      */
     public function testRun(): void

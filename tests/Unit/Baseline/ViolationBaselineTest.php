@@ -3,19 +3,13 @@ declare(strict_types=1);
 
 namespace DR\CodeSnifferBaseline\Tests\Unit\Baseline;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use DR\CodeSnifferBaseline\Baseline\ViolationBaseline;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @coversDefaultClass \DR\CodeSnifferBaseline\Baseline\ViolationBaseline
- */
+#[CoversClass(ViolationBaseline::class)]
 class ViolationBaselineTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     * @covers ::getSniffName
-     * @covers ::getSignature
-     */
     public function testAccessors(): void
     {
         $violation = new ViolationBaseline('sniff', 'foobar', 'signature');
@@ -25,8 +19,6 @@ class ViolationBaselineTest extends TestCase
 
     /**
      * Test the give file matches the baseline correctly
-     * @covers ::__construct
-     * @covers ::matches
      */
     public function testMatches(): void
     {

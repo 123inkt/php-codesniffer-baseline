@@ -18,7 +18,7 @@ jobs:
         php-versions: ['8.1', '8.2', '8.3', '8.4']
         composer-flags: ['', '--prefer-lowest']
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -39,7 +39,7 @@ jobs:
     name: Quality checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2

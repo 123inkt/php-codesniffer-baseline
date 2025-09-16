@@ -5,7 +5,7 @@
 
 To be able to add PHP_Codesniffer or adding new rules to an existing project, it is not always possible to solve
 all the new issues that appear. As PHPCodesniffer doesn't have a baseline mechanism and while 
-[PR:3387](https://github.com/squizlabs/PHP_CodeSniffer/pull/3387) is not accepted yet, this package can be used to
+[Issue:137](https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/137) has not reached a final solution yet, this package can be used to
 baseline your projects current issues.
 
 ## Getting Started
@@ -29,8 +29,8 @@ file and skip errors that are contained within the baseline.
 
 As PHP_Codesniffer doesn't have a nice and clean way to add an extension, this package will inject a single line of code
 into the `/vendor/squizlabs/php_codesniffer/src/Files/File.php` upon `composer install` or `composer update`. While this
-is a fragile solution, this is only until [PR:3387](https://github.com/squizlabs/PHP_CodeSniffer/pull/3387) is accepted 
-or another baseline method has been added.
+is a fragile solution, this is only until [Issue:137](https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/137) has reached an acceptable
+solution and implementation.
 
 ## About us
 

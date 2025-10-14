@@ -10,7 +10,7 @@ $_SERVER['argv'][] = '--report-file=phpcs.baseline.xml';
 $_SERVER['argv'][] = '--basepath=.';
 
 // invoke phpcs. find it next to this file or in vendor/bin
-foreach([__DIR__ . '/phpcs', __DIR__ . '/../vendor/bin/phpcs'] as $path) {
+foreach([__DIR__ . '/phpcs', __DIR__ . '/../vendor/bin/phpcs',  __DIR__ . '/../../bin/phpcs'] as $path) {
     if (file_exists($path)) {
         require $path;
         return;

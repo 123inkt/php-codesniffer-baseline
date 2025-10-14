@@ -1,0 +1,22 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+// set default arguments next to src locations
+$_SERVER['argc']   += 3;
+$_SERVER['argv'][] = '--report=\\DR\\CodeSnifferBaseline\\Reports\\Baseline';
+$_SERVER['argv'][] = '--report-file=phpcs.baseline.xml';
+$_SERVER['argv'][] = '--basepath=.';
+
+// invoke phpcs. find it next to this file or in vendor/bin
+foreach([__DIR__ . '/phpcs', __DIR__ . '/../vendor/bin/phpcs'] as $path) {
+    if (file_exists($path)) {
+        require $path;
+        return;
+    }
+}
+
+// failed to find phpcs
+fwrite(STDERR, 'Could not find `vendor/bin/phpcs`. Make sure to run `composer require squizlabs/php_codesniffer`' . PHP_EOL);
+exit(1);

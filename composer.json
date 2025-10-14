@@ -57,5 +57,8 @@
             "DR\\CodeSnifferBaseline\\Tests\\Unit\\": "tests/Unit/",
             "DR\\CodeSnifferBaseline\\Tests\\": "tests/"
         }
-    }
+    },
+    "bin": [
+        "bin/phpcs-baseline"
+    ]
 }

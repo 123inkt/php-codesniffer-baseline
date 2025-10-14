@@ -20,6 +20,10 @@ to the root of the project and name it `phpcs.baseline.xml`.
 ```bash
 php vendor/bin/phpcs src tests --report=\\DR\\CodeSnifferBaseline\\Reports\\Baseline --report-file=phpcs.baseline.xml --basepath=.
 ```
+Or convenient wrapper for the above command:
+```bash
+php vendor/bin/phpcs-baseline src tests
+```
 
 ## Usage
 Use phpcs like you normally would. With `phpcs.baseline.xml` in the root of your project, the baseline extension will automatically read the config 

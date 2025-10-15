@@ -9,10 +9,20 @@ $_SERVER['argv'][] = '--report=\\DR\\CodeSnifferBaseline\\Reports\\Baseline';
 $_SERVER['argv'][] = '--report-file=phpcs.baseline.xml';
 $_SERVER['argv'][] = '--basepath=.';
 
+// check for --no-exit-code argument
+foreach ($_SERVER['argv'] as $index => $argument) {
+    if ($argument === '--no-exit-code') {
+        unset($_SERVER['argv'][$index]);
+        register_shutdown_function(static fn() => exit(0));
+        break;
+    }
+}
+
 // invoke phpcs. find it next to this file or in vendor/bin
-foreach([__DIR__ . '/phpcs', __DIR__ . '/../vendor/bin/phpcs',  __DIR__ . '/../../../bin/phpcs'] as $path) {
+foreach ([__DIR__ . '/phpcs', __DIR__ . '/../vendor/bin/phpcs', __DIR__ . '/../../../bin/phpcs'] as $path) {
     if (file_exists($path)) {
         require $path;
+
         return;
     }
 }

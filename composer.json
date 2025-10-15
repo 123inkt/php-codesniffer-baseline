@@ -30,7 +30,7 @@
     },
     "scripts": {
         "baseline": ["@baseline:phpcs", "@baseline:phpmd", "@baseline:phpstan", "@baseline:phpcqc"],
-        "baseline:phpcs": "phpcs --report=\\\\DR\\\\CodeSnifferBaseline\\\\Reports\\\\Baseline --report-file=phpcs.baseline.xml --basepath=.",
+        "baseline:phpcs": "@php bin/phpcs-baseline src tests --no-exit-code",
         "baseline:phpmd": "@check:phpmd --generate-baseline",
         "baseline:phpstan": "phpstan --generate-baseline",
         "run:plugin": "DR\\CodeSnifferBaseline\\Plugin\\Plugin::run",

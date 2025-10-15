@@ -22,7 +22,7 @@ php vendor/bin/phpcs src tests --report=\\DR\\CodeSnifferBaseline\\Reports\\Base
 ```
 Or convenient wrapper for the above command:
 ```bash
-php vendor/bin/phpcs-baseline src tests
+php vendor/bin/phpcs-baseline src tests [--no-exit-code]
 ```
 
 ## Usage
